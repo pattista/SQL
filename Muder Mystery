@@ -1,0 +1,34 @@
+SELECT * FROM crime_scene_report WHERE city = "SQL City" AND date = 20180115;
+
+SELECT * FROM person WHERE address_street_name LIKE “%franklin ave&” AND name LIKE “Anna%” ORDER BY address_street_name;
+
+SELECT * FROM person WHERE address_street_name LIKE “%northwestern%” ORDER BY address_numbers DESC;
+
+SELECT * FROM interview WHERE person_id = 16371 OR person_id = 14887;
+
+SELECT * FROM get_fit_now_member WHERE person_id = 16371;
+
+SELECT * FROM get_fit_now_check_in WHERE membership_id = 90081 AND check_in_date = "20180109";
+
+SELECT * FROM get_fit_now_check_in WHERE check_in_date = "20180109"
+AND check_in_time >= 1200 ORDER BY check_in_time;
+
+SELECT * FROM get_fit_now_member WHERE id = "48Z55";
+
+SELECT * FROM get_fit_now_member WHERE id = "48Z7A";
+
+SELECT * FROM person WHERE id = 67318;
+
+SELECT * FROM person WHERE id = 28819;
+
+SELECT * FROM drivers_license WHERE id = 423327;
+
+SELECT * FROM drivers_license WHERE plate_number LIKE "%h42w%";
+
+SELECT * FROM interview WHERE person_id = 67318;
+
+SELECT * FROM drivers_license WHERE hair_color = "red" AND gender = "female" AND height >= 65 AND height <= 67 AND car_make LIKE "%tesla%";
+
+SELECT * FROM person WHERE license_id = 202298 OR license_id = 291182 OR license_id = 918773;
+
+SELECT * FROM facebook_event_checkin WHERE person_id = 78881 OR person_id = 90700 OR person_id = 99716;
