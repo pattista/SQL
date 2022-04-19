@@ -1,0 +1,94 @@
+/* Open the customers table and see what columns are availble. */
+SELECT * FROM customers LIMIT 5;
+/* order_id and acctnum */
+
+/* Open the JanSales table and see what columns are available. */
+SELECT * FROM JanSales LIMIT 5;
+/* orderID, Product, Quantity, price, orderdate, location */
+
+/* How many orders were placed in January? */
+SELECT count(*) FROM JanSales;
+/* 9723 */
+
+/* How many of those orders were for an iPhone? */
+SELECT count(*) FROM JanSales WHERE Product = "iPhone";
+/* 379 */
+
+/* Select the customer account numbers for all the orders that were placed in February. */
+SELECT customers.acctnum FROM customers
+INNER JOIN FebSales
+ON customers.order_id = FebSales.orderID;
+
+/* Which product was the cheapest one sold in January, and what was the price? */
+SELECT Product, price FROM JanSales ORDER BY price ASC LIMIT 1;
+/* AAA Batteries (4-pack) $2.99 */
+
+/* What is the total revenue for each product sold in January? */
+SELECT SUM(quantity)*price as revenue, product FROM JanSales GROUP BY Product;
+
+/* Which products were sold in February at 548 Lincoln St, Seattle, WA 98101,
+how many of each were sold,
+and what was the total revenue? */
+SELECT Product, sum(Quantity), SUM(quantity)*price as revenue, location FROM FebSales
+WHERE location LIKE "%548 Lincoln St%" GROUP BY Product;
+
+/* How many customers ordered more than 2 products at a time in February,
+and what was the average amount spent for those customers? */
+SELECT count(customers.acctnum), avg(quantity)*price
+FROM FebSales
+JOIN customers
+ON FebSales.orderID = customers.order_id
+WHERE FebSales.quantity >2;
+/* Customer count = 890, AVG spend for them is $3.99 */
+
+/* List all the products sold in Los Angeles in February, and include how many of each were sold. */
+SELECT Product, sum(quantity) FROM FebSales
+WHERE location LIKE '%los angeles%' GROUP BY Product;
+
+/* How many locations are there in New York that sold more than 1 product in January? = 133*/
+SELECT  count(DISTINCT location) FROM JanSales
+WHERE location LIKE "%NY%" AND quantity > 1;
+
+/* How many of each type of headphone were sold in February? */
+SELECT SUM(Quantity) AS quantity, Product
+FROM FebSales
+WHERE Product LIKE "%headphones%"
+GROUP BY Product;
+
+/* What was the average amount spent per account in February? = $181.46 */
+SELECT SUM(quantity*price)/COUNT(customers.acctnum)
+FROM FebSales
+JOIN customers
+ON FebSales.orderID = customers.order_id;
+
+OR
+
+SELECT AVG(quantity*price)
+FROM FebSales
+JOIN customers
+ON FebSales.orderID = customers.order_id;
+
+/* What was the average quantity of products purchased per account in February? */
+SELECT SUM(quantity)/COUNT(customers.acctnum) FROM FebSales
+JOIN customers ON FebSales.orderID = customers.order_id;
+
+/* Which product brought in the most revenue in January and how much revenue did it bring in total? */
+SELECT Product, SUM(quantity*price) AS Revenue FROM JanSales
+GROUP BY Product 
+ORDER BY Revenue DESC
+LIMIT 1;
+
+
+
+/* other search queries */
+Orders placed between February 13 and February 17, 2019:
+select orderdate from febsales where orderdate between '02/13/19 00:00' and '02/18/19 00:00';
+
+Find address for order placed at a specific date and time:
+select location from febsales where orderdate = '02/18/19 01:35';
+
+Total # of orders on February 18, 2019:
+select sum(quantity) from febsales where orderdate like '02/18/19%';
+
+SELECT DISTINCT Product FROM FebSales WHERE Product LIKE '%Batteries%';
+SELECT DISTINCT Product , Price FROM FebSales WHERE price LIKE '%.99%';
