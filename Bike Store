@@ -1,0 +1,26 @@
+CREATE TABLE bikestore (
+  id INTEGER PRIMARY KEY,
+  name TEXT,
+  tireSize INTEGER,
+  color TEXT,
+  price INTEGER
+);
+
+INSERT INTO bikestore VALUES(1, 'bike', 23, 'purple', 100);
+INSERT INTO bikestore VALUES(2, 'super bike', 23, 'purple', 103);
+INSERT INTO bikestore VALUES(3, 'crazy bike', 21, 'green', 135);
+INSERT INTO bikestore VALUES(4, 'yoo bike', 29, 'teal', 109);
+INSERT INTO bikestore VALUES(5, 'mega bike', 33, 'black', 400);
+INSERT INTO bikestore VALUES(6, 'biker', 23, 'purple', 102);
+INSERT INTO bikestore VALUES(7, 'bikes', 23, 'purple', 150);
+INSERT INTO bikestore VALUES(8, 'bikedsddfds', 23, 'purple', 160);
+INSERT INTO bikestore VALUES(9, 'bikeasdfsdv', 23, 'purple', 191);
+INSERT INTO bikestore VALUES(10, 'basdfe', 23, 'purple', 175);
+INSERT INTO bikestore VALUES(11, 'bikesalot', 23, 'purple', 205);
+INSERT INTO bikestore VALUES(12, 'bike like mike', 23, 'purple', 100);
+INSERT INTO bikestore VALUES(13, 'bichael', 23, 'purple', 146);
+INSERT INTO bikestore VALUES(14, 'bikerson', 23, 'purple', 209);
+INSERT INTO bikestore VALUES(15, 'bikel', 23, 'purple', 185);
+
+SELECT name, price FROM bikestore ORDER BY price;
+SELECT SUM(price) FROM bikestore;
