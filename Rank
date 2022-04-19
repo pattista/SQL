@@ -1,0 +1,40 @@
+/* In this project, I was tasked to Query all columns for all American cities in the 
+CITY table with populations larger than 100000. The CountryCode for America is USA. The CITY table is described as follows*/
+
+SELECT * FROM City
+WHere Countrycode="USA" AND 
+Population>100000
+
+/* In this project, I was asked the same question above but instead of the 100000, I was asked to query the name field for
+all american cities larger than 120,000*/
+
+Select NAME 
+From City 
+Where Countrycode ="USA" AND
+Population>120000
+
+/* Query all columns(attributes) for every row in the CITY table*/
+
+Select * From CITY
+
+/*Query all columns for a city in CITY with the ID 1661*/
+
+SELECT * FROM CITY
+WHERE ID=1661
+
+/* Query all attributes of every Japanese city in the CITY table.*/
+SELECT * FROM CITY
+WHERE Countrycode="JPN"
+
+/*Query the names of all the Japanese cities in the CITY TABLE.*/
+SELECT NAME FROM CITY 
+WHERE COUNTRYCODE="JPN"
+
+/*Query a list of CITY and STATE from the STATION table.*/
+SELECT CITY, STATE
+FROM STATION
+
+/*Query a list of city names from STATION for cities that have an even ID number. Print the results in any order, but exclude duplicates from the answer*/
+SELECT DISTINCT CITY 
+FROM STATION
+WHERE ID %2=0
