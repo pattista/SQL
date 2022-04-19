@@ -1,0 +1,48 @@
+# First, I pulled a dataset from Kaggle on Spotify Top 50 2021 information.
+# I created a table in SQLite.
+# Then, I imported the table values.
+
+CREATE TABLE "spotify" (
+	"id"	INTEGER,
+	"artist_name"	TEXT,
+	"track_name"	TEXT,
+	"track_id"	TEXT,
+	"popularity"	INTEGER,
+	"danceability"	REAL,
+	"energy"	REAL,
+	"key"	INTEGER,
+	"loudness"	REAL,
+	"mode"	INTEGER,
+	"speechiness"	REAL,
+	"acousticness"	REAL,
+	"instrumentalness"	REAL,
+	"liveness"	REAL,
+	"valence"	REAL,
+	"tempo"	REAL,
+	"duration_ms"	INTEGER,
+	"time_signature"	INTEGER
+);
+
+# How many songs on the list are by Olivia Rodrigo? = 4
+SELECT COUNT(*) FROM spotify WHERE artist_name = "Olivia Rodrigo";
+
+# Which songs have a tempo at or above 150 and a duration of 200000 or longer? = id 33, 8, 13, 23, 18
+SELECT * from spotify
+WHERE tempo >= 150 AND duration_ms >= 200000
+GROUP BY track_name;
+
+# What is the average popularity of all songs on the list? = 86.8
+SELECT avg(popularity) from spotify;
+
+# How many different artists made the cut? = 35
+SELECT  count(distinct artist_name) from spotify;
+
+# Which artist had the most songs on the list? = Olivia Rodrigo and Doja Cat both had 4
+SELECT artist_name, COUNT(artist_name) AS count FROM spotify
+GROUP BY artist_name
+ORDER BY count DESC;
+
+# What are the top 10 songs (include artist name), by popularity?
+SELECT track_name, artist_name, popularity FROM spotify
+ORDER BY popularity DESC
+LIMIT 10;
